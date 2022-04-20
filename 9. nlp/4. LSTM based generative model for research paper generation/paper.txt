@@ -1,0 +1,601 @@
+On the Need of a New Standard for Multi-Agent Systems  A Comprehensive Survey and Recommendations 
+Abstract—Agent technology has gained a huge amount of attention in the research community during the last few years. This new area of computing that has its roots in Software Engineering, Distributed Computing and Artificial Intelligence, has been used in a large number of commercial applications ranging from E-Commerce to defense applications. In order to facilitate the Agent based approach to software development, a large number of Agent frameworks like JATLite, JADE and Aglets etc. have been developed. With the increasing number of these frameworks, two parallel agent development standards have evolved: FIPA and MASIF. 
+In this paper, we have done a thorough review of these two standards. We have found out that these two standards provide totally disjoint features. In addition, both of the standards lack many of the features required for the realization of a true multiagent society.
+We have highlighted the features missing in both of the standards and proposed suggestions on how these features can be implemented. We have proposed the need for a new Agent standard that may address the requirements we have pointed out in the survey. 
+Keywords- Multiagent Systems, Agent standards, Agent Platforms, FIPA, MASIF
+I.	 INTRODUCTION
+Agent is an autonomous piece of software that acts on the behalf of its user to achieve its individual goal or global goal of the society. Besides autonomy, agents have various other attributes like: intelligence, mobility, goal-oriented and interactive etc. [1]
+With the increasing number of Agent development frameworks, the need for the standardization arose. This is because of the incompatibility issues faced when agents of one framework tried to interact with agents of some other framework [2]. For example, agent of one framework using Knowledge Query and Manipulation Language i.e. KQML for communication couldn't communicate with agent of another framework that used Knowledge Interchange Format, KIF for communication. Similarly, frameworks also used proprietary mechanisms to deal with issues like Agent Life Cycle Maintenance, Agent Naming etc. So obviously, the need for the standardization was felt.
+Foundation for Intelligent Physical Agents (FIPA) and Object Management Group (OMG) started to work on standardization during 1990s. However, because of these two organizations working independently with no collaboration among them, the end result was the development of two parallel and competing standards, FIPA and OMG-MASIF, each providing entirely disjoint features. In addition to this, another problem was that these two standards didn't address many of the important features like security, true mobility etc. that should be part of a good framework [3].
+In this paper we tried to compare these two standards along with highlighting the missing features. Rests of the sections are organized as follows: first we will give a brief introduction of these two standards. Then, we will compare these two standards. Finally, we end the paper with our recommendations.
+II.	FIPA
+Fig. 1 describes the architecture of a FIPA compliant system. A FIPA platform comprises of different entities that include a Directory Facilitator (DF), Agent Management System (AMS), and Agent Communication Channel (ACC). A DF implements the concept of yellow pages in which agents that want to advertise their services publish their services in directory (DF). Other agents can lookup the services from DF. ACC provides agent communication within and across platforms. AMS provides the life cycle management of an agent [4]. In addition to standardizing the conceptual framework of an agent environment, a high level communication language called FIPA-ACL was developed along with the definition of a large number of interaction protocols.
+III.	MASIF
+MASIF was developed by Object Management Group (OMG) whose main intention was to integrate all mobile technology. This gave rise to a standard model for distributed computing. MASIF standardizes several terminologies related to agent execution environment [5]. In addition to this, two standard interfaces are 
+ 
+Figure 1. 	 FIPA Agent Reference Model [3]
+defined: MAFFinder and MAFAgentSystem. MAFAgentSystem - like AMS of FIPA - is used for performing different agent management operations like agent creation, termination and suspension. MAFFinder is used for provide facilities of yellow pages. MASIF doesn’t define any communication language. It does address the mobility issue but it doesn't address advanced level of mobility features like continuations etc.
+IV.	A COMPARISON OF FIPA WITH MASIF
+We compare the features of FIPA & MASIF based on four criteria: Communication, Interoperability, Mobility and Security. We will be pinpointing the features provided by these two standards as well as the missing features. The comparison is also shown in Table I.
+A.	Communication
+In FIPA, the basic means of communication is by means of passing messages via an Agent Communication Language called FIPA-ACL. The messages can be exchange in blocking as well as non-blocking mode. In contrast to this, MASIF allows agents to communicate only via migration i.e. agents have to migrate to remote machines in order to communicate. Even though, this asynchronous messaging facility provides various useful features like bandwidth efficiency and load balancing but it leads to security issues that is one of the major limitations on using Mobile Agents in E-Commerce. The definition of a higher language communication language by FIPA allowed the development of a large number of interaction protocols. An Interaction Protocol allows having a dialogue between two or more agents such that messages exchanged during a session are highly correlated in terms of their semantics. These Interaction Protocols allow agents to perform bargaining or negotiation in order to achieve each other's goals. FIPA provides implementations of a number of Interaction Protocols. This includes ContractNet, English Auction Interaction Protocol, and Brokering Interaction Protocol etc. MASIF is not equipped with any built-in Interaction capabilities due to its inherent limitations of no message passing primitives [6, 7].
+FIPA only provides basic Interaction Protocols. There are situations however, where we require complex level of coordination [8]. For example, consider the following dialogue between two agents B and S discussed in [9]:
+B1: I would like to rent a car for 2 days please.
+S1: I offer you one for Rs 8000.
+B2: I reject! How about Rs 4000?
+S2: I reject! What do you need a car for?
+B3: I want to drive to Sukkur to attend a conference.
+S3: You can also fly to Sukkur! I can book you a ticket with AirBlue airlines for Rs 4000.
+S4: I didn't know flights were so cheap! I accept!
+In the above dialogue, we have cited a basic example of reframing. Reframing allows the negotiators to share the underlying goal of interaction & negotiation so that participants may propose alternatives that can satisfy the actual goal of interaction. Neither FIPA nor MASIF provides these advanced Interaction Protocols.
+Another important feature that is lacking in both of standards is distributed events. Distributed Events allow a subscriber to receive alerts about future events [6]. This feature is very important in distributed environments and supported by popular distributed environments like JINI and Universal Plug and Play Protocol, UPnP. In order for an agent based application to be useful in distributed environments, it should also provide support for distributed events notification. An example of the situation in which this can be useful is as follows. Suppose an agent ‘A’ lookup 'printing' service in the DF. ‘A’ is unable to find the desired service because the service is not currently available. ‘A’ can subscribe to DF in order to receive alert whenever this printing service gets available in future.
+Multicasting is also a missing feature both in FIPA and MASIF. Multicasting allows a message to be sent to a selected set of recipients. Providing supporting for multicasting as a basic primitive will result in a great deal of flexibility and efficiency [10]. For example, it will allow an agent to efficiently perform bargaining. Also, it provides the flexibility to an application developer to program their own protocols by using basic multicasting primitives.
+B.	Interoperability
+FIPA defined a communication language called FIPA-ACL for interoperability among agents. In FIPA-ACL which is based on speech act theory, human communication is used as a basic model for communication among agents [11]. 
+TABLE I. 	A COMPARISON OF FIPA AND MASIF
+Feature	FIPA	MASIF
+Proposed By	FIPA	OMG
+Communication Language	ACL	None
+Interaction Protocols	Basic	None
+Granularity of Communication	Message	Mobile Agents
+Multicasting	No	No
+Distributed Events	No	No
+Migration	No	Yes
+Tracking	No	Yes
+Continuation	No	No
+Syntactic Interoperability	Among FIPA Compliant Systems	Among same Agent System Type
+Semantic Interoperability	Yes	No
+Security Features	No explicit mechanism specified	Based on Corba-IDL, needs more efforts on security
+Yellow Pages	Directory Service	MAFFinder Interface
+Agent Management	FIPA Agent Management System	MAFAgentSystem
+Products	Jave Agent Development Environment, Agent Development Kit, April Agent Platform, FIPA-OS, KEAP, ZEUS	Aglets, Grasshopper
+
+An ACL message contains one or more message parameters. At-least, a message in ACL must have the parameter – 'performative' (request, inform, tell etc.) that defines the illocutionary force (the intended meaning) of the message [12]. Other parameters of ACL message include sender, receiver, content, language, ontology etc. 
+By specifying the basic structure of a FIPA message, syntactic interoperability is ensured among FIPA agents. So, every message that is in compliance with FIPA-ACL can be understood by a FIPA-compliant agent. Two agents using entirely different machines and languages should theoretically be able to communicate as long as the two comply with ACL specifications [13]. However, this is not practically true due to practical limitations. For example, agent in a FIPA compliant platform like JADE doesn’t talk with another agent in another FIPA-compliant framework like ADK. The content of ACL message can be encoded in various languages. The attribute 'language' of FIPA-ACL message allows the content of the message to be specified in an inner language like KIF, RDF etc. In addition another attribute in the message - 'ontology' - allows describing the entities used in the message and the relationships among these entities. The use of an inner language along with the ontology completely specifies the semantics of the message and this result in semantic interoperability among agents.
+In contrast, the mobile agents of MASIF require homogeneous platform for interoperability. Mobile Agents can only interoperate on different if they are using same language and same serialization mechanism etc.  There is no well defined mechanism in MASIF to specify semantics; hence it is not semantically interoperable [14].
+C.	Mobility
+FIPA standard doesn't talk about mobility as a mandatory requirement for FIPA compliant system. FIPA provides some guidelines for how implementation provider can provide support for mobility on their own but FIPA doesn’t impose a mandatory requirement to support this feature. In addition the specification that talks about this is at preliminary stages. Some FIPA compliant frameworks like JADE provide basic level of mobility supports like migration. But, these implementations don’t provide advanced mobility concepts like agent tracking and continuations [2]. Since, MASIF was designed to integrate existing mobile agent platforms; it provides good support for mobility. Agents can migrate from one place to another very easily. In addition, it also supports agent tracking in which the location of a mobile agent can be tracked.
+ASDK’s Aglets, a well known framework based on MASIF, provides mobility features like Migration and re-tracking of agents. However, MASIF also doesn’t provide complete support of mobility since it lacks continuation. In continuation, agent saves its execution from migration and then on new machine resume from the same point, where it left the work [15]
+D.	Security
+FIPA and MASIF specification didn't address security issues precisely. The autonomy of an agent requires an agent to have complete authority that it can exercise with minimal level of intervention. This can cause severe security threats. So a trade off must be maintained between autonomy and security. The importance of security for an agent environment can't be underestimated and security issues must be addressed by FIPA and MASIF. The FIPA specifications didn’t talk in detail about any security architecture that can be used for security in multi-agent system. The security of MASIF is based on CORBA-IDL security mechanism [2,16,17]. FIPA is comparatively more secure than MASIF, because a mobile agent has to migrate to a remote machine to perform execution. So, a level of trust must be maintained between mobile agent and host machine. To ensure the security of host machine sandboxing mechanisms can be used in which a mobile agent runs in a confined environment with a set of policies enforced. Each of the requested action of mobile agent is first checked to be compliant with the policy and then the action is executed [18,19].
+Several independent efforts have also been put forward to provide security solutions in an agent environment to provide a secure communication services and secure execution environment for FIPA based systems and   a flexible framework for securing MASIF based systems [20].
+V.	CONCLUSION
+After a thorough review of the features of the FIPA and MASIF standards, we found out that there are some features, i.e. Security, Distributed Events, Multicasting & Continuation, that are not addressed at all by any of these two standards. The syntactic and semantic interoperability issues are nicely handled by FIPA that is very important requirement for realizing a true multi agent society. But FIPA lacks mobility which is addressed very well by MASIF. MASIF however does not talk about Interaction protocols. (A comprehensive comparison has been shown in Table I)
+We recommend a new Agent Standard – that can be a combination of these two standards – that must address all feature requirements, we identified for a true Agent System.
+ACKNOWLEDGMENT 
+This research work is supported by ‘Center of Research in Ubiquitous Computing’, National University of Computer and Emerging Sciences, Karachi, Pakistan
+
+Towards a Grid-based approach to Traffic
+Routing in VANET 
+Noman Islam, Zubair A. Shaikh, Shahnawaz Talpur
+Center of Research in Ubiquitous Computing
+National University of Computer & Emerging Sciences
+Karachi, Pakistan
+
+
+
+ 
+Abstract—Vehicular Ad hoc Network (VANET) is a wireless network that is formed on the fly between a collection of cars connected by wireless links. VANET has gained a great amount of attention during recent years and is used for a large number of safety (accident warning, weather notification) and non-safety (multimedia, gaming) applications. One of the most promising areas where VANET can be proved to be very useful is Traffic Management. Various approaches that have been tried for Traffic Management ranges from those that takes assistance from roadside infrastructure [7], [8] to purely infrastructure-less approaches [6]. In this paper we have addressed a very important issue of Traffic Management. Our proposed approach provides assistance in traffic routing by integrating VANET and Grid Computing. By using our approach a driver can always find out a feasible route to reach its destination based on congestion all around the path from its current position to destination. The proposed approach is scalable, simple and can be easily adapted to run in any environment. 
+Keywords- VANET, Traffic Management, Grid Computing, Traffic Routing, Ad hoc Network,
+I.	 INTRODUCTION
+Mobile Ad hoc Network (MANET) is a network of a number of mobile routers and associated hosts, organized in a random fashion via wireless links. During recent years MANET has gained enormous amount of attention and has been widely used for not only military purposes but for search-and-rescue operations, intelligent transportation system, data collection, virtual classrooms and ubiquitous computing [13]. Vehicular Ad hoc network is an application area of ad hoc network that is formed by a collection of vehicles that interacts with other vehicles and roadside units to share traffic information, weather information, parking information, internet access etc [1]. Unlike traditional ad hoc networks that often have very low powered devices with small computing capabilities, VANET can be equipped with large batteries, processing capabilities etc [7]. In addition the nodes of VANET moves with higher speed and the number of nodes forming VANET is also very large [2].
+Therefore the issues of VANET also differ significantly from traditional issues of MANET. For the research community, the key areas of research in VANET include frequency bands, physical / link layers standards, routing, IP Addressing, security, data dissemination and development of new applications [1],[2],[4]. 
+Different frequency bands have been proposed for VANET (e.g. DSRC, new ARIB STD-T75). IEEE has also proposed IEEE P1609.1, P1609.2, P1609.2 and P1609.4 for VANET. Because of these multiple standards, the adoption rate of VANET is very slow since each country follows its own specifications [1]. Work is also required to address various physical and link layer issues of VANET (e.g. efficient channel estimation and QoS models etc [1]).
+Due to the fast changing topology and scale of VANET, routing protocols of MANET (e.g. AODV, DSR, TORA [13]) that were designed considering low mobility and simple movement patterns are not good enough for VANET [3]. Work is being conducted on designing efficient routing protocols that considers metropolitan area mobility models and realistic speed patterns [3],[5]. Another important issue of VANET that is inherited from MANET is maintaining security and trust management among nodes. Since the nodes of VANET are strangers to each other, maintaining security and privacy along with maintaining a reasonable level of cooperation among nodes is a very challenging issue in VANET.
+As far as applications are concerned, VANET has been used to solve a large number of safety (reducing accidents, reducing congestion, emergency braking etc. [1],[2]) and non-safety applications (Electronic Toll Free Collection, Travel and Tourism, Multimedia and Gaming applications etc. [1]). 
+In this paper we have extended the idea of [7], [8] and proposed a novel approach to traffic routing by establishing a grid environment between cars. Grid Computing is also an emerging discipline and is defined as a flexible, secure and coordinated resource sharing among virtual organizations (individuals, institutions, organizations) [11].
+Fig 1: Block diagram of components available at every node
+
+By having a large collection of cars working together in a grid environment, drivers can easily determine the best route (route with minimal congestion) to reach their destination from their current location. Rest of the sections is organized as follows. First we will discuss the related work. Then we will propose our approach to traffic routing. Finally we will conclude the paper with future work.
+
+II.	LITERATURE REVIEW
+A huge amount of work is underway to solve traffic problems in metropolitan areas. iTransIT is working on urban traffic management by providing a real time congestion map for city of Dublin[9]. JETS is also working on a prototype implementation to provide a context aware journey time information [11]. This context aware system will index all journey times with the context (time, weather, road usage patterns) in which journey has occurred. FleetNet [6] is an infrastructure less self-organizing traffic information system. Vehicles receive traffic information from other vehicles and analyze the information locally and then transmit information to other vehicles.
+VGrid [7],[8] integrates Vehicular Ad hoc network along with Grid Computing technology to solve a large number of traffic related problems like lane merging, ramp metering etc.
+In this paper we have extended the idea proposed in [7] and [8] to solve traffic routing problem using grid based vehicular ad hoc network.
+III.	PROPOSED APPROACH
+We are extending the work of [7] and [8] by having a number of vehicles forming a computational grid to determine the routes for nodes based on any distributed shortest path algorithm [14]. The advantage of using grid computing for VANET is that the approach is scalable as
+
+
+ 
+Fig 2: A Grid based approach to Traffic Routing in VANET
+more nodes are added, more computing power is also added. Hence the approach works for a large number of nodes. In addition, if each node will be calculating routes on its own, nodes will be performing redundant calculations. By having a collection of nodes working together to calculate routes to destinations from a single common source, we can avoid a number of redundant calculations. 
+In our approach, we are making several simple assumptions. We are assuming that each vehicle is equipped with: a GPS receiver, a digital map, a transceiver, storage and processing capabilities. These simple assumptions are the same as [6]. The GPS receiver will provide the latitude and longitude information that can further be mapped to a particular location using digital map. The digital map also provides a set of routes to reach from a particular source to a destination. Each of the nodes will be running a grid computing environment. Fig 1 describes the block diagram of the components required at every node. 
+Based on the location information received from GPS, vehicles of near by location will form groups. Members of same group will form a grid and work together to find out feasible routes (minimal congestion) to reach their destination.
+IV.	DETAILS OF THE PROPOSED APPROACH
+Fig 2 describes the overall approach in detail. Every node will be running a grid-computing environment. Based on the location information received by GPS receiver, vehicles of a particular region will use a clustering algorithm (e.g. k-means) to form a group.
+Every group will be assigned a unique group Id. Groups will be interacting with its neighboring groups and sharing information about congestion information in its region. The Congestion information can be obtained by the approach of [7], [8]. As the result of this intergroup communication, a fair indication of congestion in other areas is available to every node. This congestion information will be served as a metric for determining an appropriate path to reach the destination. The nodes of the group will be running a distributed Shortest Path algorithm on their grid environment [14]. This shortest path algorithm will compute shortest paths from a single source to all the destinations.
+V.	CONCLUSION
+In this paper we have proposed a novel approach based on grid computing for traffic routing. The proposed approach is scalable and based on few simple assumptions, hence easy to be deployed on any environment. The extension to current work includes the design of new routing metrics (e.g. not only congestion but a function of congestion, distance, weather etc.).
+ACKNOWLEDGMENT 
+This research work is supported by ‘Center of Research in Ubiquitous Computing’, National University of Computer and Emerging Sciences, Karachi, Pakistan
+
+A novel approach to Service Discovery in Mobile Ad hoc Network 
+ 
+Noman Islam, Zubair A. Shaikh
+Center of Research in Ubiquitous Computing
+National University of Computer & Emerging Sciences
+Karachi, Pakistan
+
+
+
+ 
+Abstract— Mobile Adhoc Network (MANET) is a network of a number of mobile routers and associated hosts, organized in a random fashion via wireless links [16]. During recent years MANET has gained enormous amount of attention and has been widely used for not only military purposes but for search-and-rescue operations, intelligent transportation system, data collection, virtual classrooms and ubiquitous computing [14]. Service Discovery is one of the most important issues in MANET. It is defined as the process of facilitating service providers to advertise their services in a dynamic way and allowing consumers to discover and access those services in an efficient and scalable manner [20].  In this paper, we are proposing a flexible and efficient approach to service discovery for MANET by extending the work of [5]. Most of the service discovery protocol proposed in literature don’t provide an appropriate route from consumer to service provider. Hence after services are discovered, a route request needs to be initiated in order to access the service. In this paper, we are proposing a robust and flexible approach to service discovery for MANET that not only discovers a service provider in its vicinity but at the same time it also provides a route to access the service. We have extended the approach proposed in [5] for efficiency by adding the push capabilities to service discovery. 
+Keywords- MANET, Ad hoc network, Service Discovery, Ubiquitous Computing 
+I.	 INTRODUCTION
+A mobile ad hoc network (MANET) is a self-configuring network that is formed and deformed on the fly by a collection of mobile nodes without the help of any prior infra-structure or centralized management [14]. These networks are characterized as infrastructure less, mobile, autonomous, multi-hopped, self-organized and self-administered, having dynamic topology and unpredictable traffic patterns etc. 
+A great deal of research is being carried out to solve various issues of MANET. These issues include Routing, MAC Layer Issues, Power Management, Transport protocol, Quality of Service, Billing, Addressing, Service Discovery, Data Management and Security etc [11], [13] and [15].
+One of the most important questions in MANET is discovery of services available around the vicinity of any node. A service can be any hardware, software or any other entity that a user might be interested to utilize and Service Discovery is the process of discovering the services based on user preferences. An efficient and scalable approach to service discovery can lead to the development a large number of potential applications. For example, in a vehicular ad hoc network, vehicles might be interested in knowing the services provided by a near by fuel station. Similarly, in a battlefield soldiers might be interested in sharing the situation about the whole battlefield.
+Due to the dynamic nature, there are always spatial and temporal variations in the availability of services in MANET [18]. Hence a service discovery strategy should be highly robust, efficient and dynamic in nature. 
+In this paper we are proposing an efficient and flexible approach to service discovery in MANET by extending the work of [5]. Rest of the sections is organized as follows: first we will provide a review of existing approaches to service discovery. We will then discuss our approach to Service Discovery along with implementation details. Finally we will conclude the paper with future work.
+II.	LITERATURE REVIEW
+The service discovery protocols that have been proposed in the literature can be classified as directory less (e.g. IBM DEAPspace, UPnP and Konark) or directory based architecture (e.g. Salutation, JINI, SLP) [19].     SLP [20],[9] and JINI[20],[10] relies on a directory to store services. SLP represents the service by means of URL and attributes. JINI is based on Java and uses Interfaces and RMI mechanisms for service discovery process. Because of the lack of semantic information, these protocols can only perform exact matching of services using identifier and attributes.  
+To support service discovery based on semantics, DReggie[8] (an extension of JINI) is proposed. DReggie semantically represents the services by means of DAML and compare the service using a PROLOG reasoning engine. GSD[3] also describes the services semantically by means of DAML. They grouped the services based on their semantics for efficient discovery of services.
+In order to address heterogeneity of MANET, [2] proposed a middleware Konark, designed specifically for discovery and delivery of device independent services in ad-hoc networks. Konark is based on SOAP and HTTP for service discovery and delivery purposes.
+[5] proposed a totally different approach to service discovery by extending AODV protocol and provided service discovery at network layer. As a result when a service discovery request is initiated to discover a service, a route is also established towards the service provider. Hence, when the client wants to use the service, a new route request is not required.
+III.	A NOVEL APPROACH TO SERVICE DISCOVERY IN MANET
+We are proposing an efficient approach to service discovery for MANET by extending the concept proposed in [5]. Nodes will be using an extension of AODV routing protocol to search on demand for a service provider along with an appropriate route to access that service. We are extending the concept of [5] by allowing a node to not only pull the service provider information on-demand, but a node will also be pushing the service advertisements periodically along with the route information. 
+The novelty of our strategy is that unlike most of the service discovery protocols (e.g. JINI, UPnP, Deapspace and SLP), an appropriate path towards the service provider is available after the completion of service discovery process. In addition to employing AODV, we are also explicitly pushing the service advertisement to adjacent nodes along with appropriate routing information. This information can be saved by adjacent nodes based on their preferences and can also be propagated ahead. So, in most of the cases, a service discovery request can be served from nodes local service table and doesn’t need to be propagated on the network. An extension to our approach can be that when an AODV routing protocol is not available on the network and a service discovery request can’t be served from local cahec, a service discovery request can be intelligently broadcasted on the network. 
+Fig 3 describes the details of our proposed approach in pseudo code. Every node will maintain a Routing Table to hold routing information and a Service table to maintain information about the services provided by it and other nodes along with other information like the life time of the services, the provider of the service etc. The routing and service table maintained by every node is shown in Fig 2.
+The nodes will periodically broadcast the services provided by it to its peer nodes by means of a message UPDATE_SERVICE_TABLE (UST).     The message contains the service advertisements along with the 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig 1: A Novel approach to Service Discovery
+routing information corresponding to the provider of each service.
+The receiving node can store the service advertisements it heard from its neighbor based on its preferences and interests. In addition, to avoid network congestion, if a node hears a service advertisement it can reschedule its broadcast at a later time to avoid network congestion. If a node wants a service, it will first of all check its service table for a possible match. If a service is found in the service table, node can immediately requests the provider for the desired service. However, if no appropriate service provider is found in the local service table, a service discovery request ‘SREQ’ will be issued to find out a service provider for this service. The SREQ is served based on ‘Ad hoc On Demand Distance Vector Routing Protocol’ [5]. The SREQ message is propagated along the network. Any node receiving the SREQ message will first check in its service table for corresponding service. If a match is found, an appropriate reply ‘SREP’ message will be generated. If no match is found, the intermediate nodes will propagate the message SREQ to adjacent neighbors. In addition to that, it will create a temporary reverse route towards source of the message. When a node receives an SREP message, it will check its routing table, delete the 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig 2 – Routing and Service Tables maintained by nodes
+corresponding temporary reverse route and create a forward entry towards the destination. The node will then send the SREP message towards the source. The RREP message will contain complete details of the services it provides. 
+In the routing table, along with each valid route a list of precursors is also maintained. The precursor lists are the set of nodes that may be forwarding packets on this route.  In case of link breakage or a node failure, an RERR message will be generated to notify the precursors immediately about the link breakage, which in turn notify its upstream nodes and so on until source node reaches. If no precursor list is available, the ‘RERR’ message will be broadcasted along the network. In order to avoid network congestion a broadcasted message will have a unique id and a node will not broadcast RERR message with same id twice. Fig 1 shows this over all process in detail.
+IV.	IMPLEMENTATION DETAILS
+We have developed our own simulator for the implementation of our proposed approach. The simulator has been developed in Java 2 Standard Edition. The simulator can work in Graphical and Text mode. In the graphical mode, a GUI called ‘Control Panel’ is provided that can be used to create a network, save a created network or load an already built network. By means of a topology viewer, one can look at the global view of the network. Each of the nodes of the network can be viewed in a graphical window, from where it can be configured, started, place a service advertisement or can query about a particular service. In the text mode, various data structures of the nodes and links can be instantiated in a 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig 3 – Pseudo Code Describing the Service Discovery Procedure
+program and can be simulated by adjusting different parameters. After the simulation is done, the simulator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+also outputs a trace file in ns-2 format that can be analyzed and viewed by other tools like NAM etc.
+V.	SIMULATION RESULTS
+To simulate our approach, we have developed a program for our simulator that creates ‘n’ nodes dynamically and link them randomly. Every node is randomly chosen to be either capable of storing or not storing advertisements. Nodes are randomly assigned a number of services. While simulation is running, after every half second, a random number of requests are generated and based on a probability of 0.5 either a link is randomly created or broken. Fig 4 shows the result of our simulation. We have compared the results based on Request Acquisition Latency i.e. the time duration in which a service discovery request is initiated and the
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+service discovery process is completed. Fig 4 compares the result when no service advertisement is broadcasted periodically with the result when broadcast capability is added. Fig 4(a) and 4(b) shows the situation when 50 nodes were simulated with a total of 25 services available on the network. In this situation, 174 requests were generated in a simulation time of 30 seconds. When no broadcasting was done 147 requests were replied with request acquisition latency between 0-0.2s. But when broadcasting was done, the 154 requests were replied in between 0-0.2s. This shows that by adding broadcasting functionality, performance of service discovery strategy has improved. Similarly in the case of 100 nodes, we can see in Fig 4(c) and 4(d) that broadcasting of service advertisements have improved the request acquisition latency.
+VI.	CONCLUSION
+In this paper we have proposed a novel approach towards service discovery in MANET. The proposed approach is very flexible, efficient and can be adopted to work in any environment. The current work can be extended to represent the service using better representation language like DAML etc.  In addition broadcasting of service advertisement is right now done periodically. We can improve the broadcasting mechanism. The broadcasting can be a function of network congestion, service popularity factor etc.
+ACKNOWLEDGMENT 
+This research work is supported by ‘Center of Research in Ubiquitous Computing’, National University of Computer and Emerging Sciences, Karachi, Pakistan
+
+Service Discovery in Mobile Ad hoc Networks Using Association Rules Mining
+
+Noman Islam, Zubair A. Shaikh
+Center of Research in Ubiquitous Computing
+National University of Computer & Emerging Sciences
+Karachi, Pakistan
+
+
+ 
+Abstract- Service Discovery in Mobile Ad hoc Networks (MANET) is a difficult task because of the dynamic nature of such networks. The availability of the services in MANET varies with respect to time and location. However, the service discovery requests issued by a consumer in one session are correlated, in most of the cases. If we can find out the correlation among the services and piggyback one service response with others in advance, we can gain improvement in performance. By utilizing this correlation property among service discovery requests, we have proposed a novel approach to Service Discovery in Mobile Ad hoc Networks. We have simulated the proposed approach in JIST/SWANS simulator and the results have shown significant performance improvement.
+Key Words - MANET, Service Discovery, Association Rules Mining, ItemSet Mining
+I.	INTRODUCTION
+Mobile Ad hoc Networks are infrastructure less networks that are formed among a number of mobile nodes[1]. Due to the dynamic nature of these types of networks, algorithms that were designed for traditional networks (e.g. routing, transport protocols, security and QoS) don’t show good performance for MANET. As a result active research work is going on to propose new algorithms and protocols for MANET. Service Discovery in MANET is one such issue that has gained considerable attention during recent years. A service is any tangible or non-tangible resource that one can invoke to gain some utility. Service Discovery can be defined as the process of discovering some service on behalf of its user based on the preferences (e.g. QoS) specified by the user and constraints (e.g. cost) specified by the provider. 
+Service Discovery in MANET is a very challenging task due to a number of issues. One of the issues is to decide where to place the directory or list of the services available on the network. Because there is no prior infrastructure in MANET, we can’t dedicate any node or set of nodes as directory server, in advance. Usually, the directory is distributed among the nodes in MANET. Another important issue is the actual discovery of the service in the network. If there are few dedicated nodes, they can be queried for the service. Otherwise, broadcasting or their variations could be used for service discovery. Since the nodes are mobile and the changes (like link failure, node failure etc.) are quite common in such networks, maintaining a consistent view of the service availability in such networks is also an important task. 
+Service Discovery in MANET provides a number of useful benefits to the end user. For example: if you are traveling on a car and assuming an Ad hoc network is formed between vehicles around you. You can utilize a number of location based services while roaming along the road. This includes road safety services (e.g. weather warning, accident information, alternate route assistance) or non safety services (e.g. M-Banking, locating a restaurant/parking/fuel station). In most of these cases, a number of service discovery requests are issued simultaneously. We can call such simultaneous requests as belonging to one service session. Naturally, the service discovery requests that are issued in one session are correlated. For example, if the user intention is shopping, his requests will be to find out the shopping malls around it, the shopping items available at the mall, the cost of individual items etc. Our motivation is that if we can some how find out correlation among the services of one session, we can predict future discovery requests based on current service discovery request. In our research, we have used the Association Rules mining algorithm to achieve this objective. Using the correlation among the services and piggybacking future service request answers along with current service requests, we have proved significant gain in performance. Rest of the sections of this paper has been organized as follows: First we will review the literature on service discovery requests. Then we will discuss the proposed approach and its implementation details along with results. Finally, we will conclude the paper with discussions on future work.
+II.	LITERATURE REVIEW
+Work on Service Discovery in Ad hoc Networks have been reported from various perspectives in literature. Most of the classical algorithms for Service Discovery can be classified as directory-less and directory-based approaches. Among the first type, we have Allia[2], Konark[3], GSD[4], IBM DEAPSpace [5] and Microsoft UPnP [6] algorithm. The basic concept in Allia and GSD is the formation of alliance and groups respectively to reduce service discovery overhead. Konark represents the services in WSDL format and is based on broadcasting of service advertisement and then caching of these advertisements by peer nodes. IBM DEAPSpace algorithm, targeted for short range devices is based on intelligent broadcasting of services information to single hop devices. UPnP is a P2P protocol that uses broadcasting for service discovery and is based on SOAP for service invocation. Among the directory based approaches we have JINI[7], DReggie[8] and Mallah[9]. JINI is proposed for distributed environment, is based on Java RMI mechanism and uses Java Interfaces as service identifiers. DReggie is an extension of JINI that adds semantics to it by representing services through an ontology language called DAML. SLP[10] proposed by IETF represents the services in the form of URL and attributes and can work in directory-based or directory-less fashion. The work by Mallah[9] is based on a number of directory servers called virtual backbone. The author formulated a number of metrics like battery power, node's average velocity, effective degree, stability constraint and based on these parameters selected a number of virtual backbone nodes that are responsible for maintaining the directory of services.
+There are a number of other directions in which research on Service Discovery in MANET has been pursued. Lenders[11] forms 
+ 
+
+Fig 1 –Service Discovery based on Association Rules Mining
+
+an analogy of MANET with electrostatic field and service as a point charge. Using this model, they formulated a service discovery algorithm and defined the required protocols and methods needed for service discovery. Torres[12] worked on service discovery at network layer and extended AODV routing protocol for service discovery in MANET. Noman[13] extended this approach further by adding a proactive component to improve  latency. Hong [14] proposed service discovery based on ZeroConf. Services are advertised and browsed only in the network during topology changes or initiation of ZeroConf algorithm. Talwar[15] has proposed a service discovery algorithm based on routing intelligent mobile nodes that indexes resources and services information periodically and is queried during the discovery phase. 
+Using data mining for solving MANET issues (like service discovery) is a relatively new concept and we see only a small amount of work in this direction. Hu [16] applied the mining technique for composite web service discovery but this work was not applied to Mobile Ad hoc Network. Jabas[17] applies the mining technique to MANET traffic to find interesting relations ships among MANET nodes. Their research was motivated by the fact that these relationships can assist routing, MAC and other protocols of MANET. Our work in this paper has been done from another dimension i.e. using the association rule mining to improve the performance of Service Discovery algorithm. We use Association Rules mining technique to predict future service discovery requests based on current service discovery request. There are a two popular Association Rules mining algorithms i.e. Apriori[18] and FP-Tree[19]. Apriori algorithm is computationally too expensive. FP-Tree uses a tree like structure to reduce computational cost and is usually the recommended choice.
+III.	USING  ASSOCIATION RULES MINING FOR SERVICE DISCOVERY IN MANET
+Fig 1 shows the proposed Service Discovery Module that is running on every node. The module comprises of a Service Discovery Component that contains a service table maintaining all the services the node knows of. The component runs a service discovery algorithm that is described in Fig 2. The details of this service
+
+
+
+
+
+Fig 2: Pseudo Code of proposed approach
+
+
+S
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig 2 – Pseudo Code describing the proposed approach
+discovery algorithm are discussed in next paragraph. Every service discovery request that is generated by the service consumer will be logged in a log database. We define a service session as an interval in which a number of service discovery requests are issued by a service consumer such that these requests are related. A log database consists of a collection of session records. Each session record comprises of a number of fields and each field represents a single service discovery request issued by consumer. The Association Rules mining component uses the records stored in log database and applies FP-Tree mining algorithm on the these records to determine the correlation among the service requests. The algorithm determines what service requests are issued together i.e. frequent item sets. We have not utilized association rules since we assumed that service requests in a session can be issued in different order. The frequent item sets thus discovered can be used to predict future service discovery requests based on the current service discovery requests. Fig 2 describes the proposed approach in pseudo code format running 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig 3 – Format of SREQ and SREP packets
+on every node. The logging component listens for all incoming service discovery requests and records this in log database.  The log 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+Fig 4: Results of proposed approach with AODV as routing protocol
+database is a circular list of records. So, when the log database becomes full, it deletes starting records to log new service sessions. These logged items will then be mined using FP-Tree algorithm. The mining component reads the log database and using this information, it determines the correlation among the service discovery requests. It will determine what service requests are issued together. If the number of transactions in which some services are issued together crosses a threshold value (i.e. support), these services forms frequent item set and can be used for predicting future service requests based on current service request.
+In our approach, we have applied the mining technique on broadcast approach to service discovery. The service discovery component listens for incoming message. If the incoming message M is a service discovery request i.e. SREQ, the method extracts the requested service from the packet and looks for this service in its local service table. If the service table contains the desired service, then all the services related to this service are also picked (from the mined results) and they are also returned along with the service in SREP message. If no service is found in service table, then SREQ is propagated ahead. If the incoming message is SREP, the node sees if this is the reply of its own SREQ, then it inserts this information in its service table along with other related service information. If SREP doesn’t belong to node, it propagates the SREP message along with recording service and related information in its local service table.
+IV.	SIMULATION DETAILS AND RESULTS
+The proposed approach has been implemented in JIST/SWANS network simulator[20, 21]. The simulation has been done in a field of 500 ? 500 with random placement of nodes. Unless otherwise mentioned, we have used the default configuration parameters of JIST/SWANS for simulation. In order to test our algorithm, we need to generate service discovery requests in a session such that they are correlated. For that purpose, we developed a Correlated Data Generator (CDG) module that issues service discovery requests based on a correlation matrix CM of n ? n, where n is the number of services in the network. The correlation matrix is built programmatically using Java Random Number Generator that follows a Uniform Distribution. An n ? n matrix of random numbers R is generated and based on this matrix, the correlation matrix CM, is built in the following way:
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Using this correlation matrix CM, CDG decides what service discovery requests are to be issued in one session. First, we pick a service s randomly. This service will be part of current session. For the sake of simplicity, by a service s means the index/position of the service in a sorted list of all the services available in the network. After picking a random service s, we select all the services related to s based on CM. These services are possible candidates for inclusion in current session. We define Candidate Service Requests set C as:
+ 
+To generate a session, we pick services from candidate service request and based on certain threshold, they are probabilistically issued on the network. We generate a random number 0 = pi <1, "i?C. A service session S is then defined as: 
+ 
+where,  is the threshold value that determines the likelihood of a candidate service request to be issued to the network. We use  =0.8. The support value for FP–Tree mining in our experiments was set to 80%. To test our approach, we have simulated the proposed scheme in an Ad hoc network with various configurations. The size of the service table or service cache was kept to 5 entries with FIFO strategy as the replacement algorithm. The routing algorithm used is Ad hoc On-Demand Distance Vector Routing. Fig 4a shows the simulated results with a network of 20 nodes with 10 services. The parameter we measured is the number of service discovery requests that are locally satisfied. As we can see, when we utilize data mining information, the number of service discovery requests locally satisfied increased. Fig 4b shows the results with the number of nodes increased to 50. In both of the cases, there are some minor instances where results without mining gives better results. This is because the prediction of service requests failed i.e. a node predicts a service discovery request which is not actually used in future. This caused network and processing overhead and results in degradation of performance
+V.	CONCLUSION 
+We have proposed a novel approach to improve service discovery in MANET using Association Rules mining. The proposed approach has been applied to broadcast approach and found to give significant improvement in results. The future work in this direction is the testing and extension of the proposed approach for other parameters (e.g. latency, bandwidth) and large scale MANET. In the current approach, we have not considered the computational cost of FP-Tree mining for MANET. Future work in this direction is the development of approximate FP-Tree mining algorithm for low-powered devices. Another extension is the application of mining approach to other Service Discovery algorithms.
+ACKNOWLEDGMENT
+This research work is supported by ‘Center of Research in Ubiquitous Computing’, National University of Computer and Emerging Sciences, Karachi, Pakistan and ‘Higher Education Commission’, Pakistan.
+
+A Network Layer Service Discovery Approach for Mobile Ad hoc Network Using Association Rules Mining
+Noman Islam *, Zubair A. Shaikh**, Noor A. Shaikh*** and Aqeel-ur-Rehman *
+
+*Ph.D. Student, Department of Computer Science, National University of Computer and Emerging Sciences, Karachi, Pakistan
+**Professor & Director National University of Computer and Emerging Sciences, Karachi, Pakistan 
+***Assistant Professor, Shah Abdul Latif University, Khairpur, Sindh, Pakistan
+Abstract:
+Mobile Ad hoc Networks (MANET) are infrastructure less networks that are formed on the fly between groups of mobile nodes. Due to the vigorous nature of such networks, service discovery in MANET is a very cumbersome job. In this paper, we have proposed an integrated approach to service discovery in MANET that works at network layer to discover services and also piggy-backs responses of possible future requests with current response. In addition, the proposed approach also provides an appropriate route to access the service along with discovering a service provider. The proposed approach is based on a proactive component that periodically broadcasts service advertisements and a reactive component that discovers a service on-demand when a service request is not satisfied locally. To discover the services, the reactive component relies on service oriented routing algorithms to propagate services on the network. In this paper, we have discussed two service oriented routing algorithms. The first algorithm is based on Ad hoc On–Demand Distance Vector Routing and is adopted from literature. The second algorithm is based on Dynamic Source Routing protocol and has been proposed by us in this paper. In order to improve efficiency further, our approach predicts future service requests and appends responses of these requests with current response. In order to achieve this objective, the proposed approach applies Association Rules Mining on the service requests history to discover correlation among services. The mining results are then used to predict future service discovery requests and then attaching future service information with current response. The proposed scheme has been implemented on JIST/SWANS simulator. The results of the simulation show that the proposed approach is robust, efficient and scalable.
+
+Keywords: Service Discovery, Ad hoc Network, MANET, Network-Layer Service Discovery, Association Rules Mining
+INTRODUCTION
+Mobile Ad hoc Networks (MANET) are defined as infrastructure-less networks that are established on the fly between a collection of mobile nodes(IETF 2009). Such networks settings are characterized as dynamic, multi-hopped, and self-operated(Sun; Sofat et al. 2008). Due to unique nature of these networks, most of the operating procedures that were designed for traditional networks are not suitable for MANET. As a result, there has been a huge amount of research efforts going on to address various issues of MANET(Chlamtac et al. 2003; Fife and Gruenwald 2003; Toh et al. 2005; Pandian et al. 2006; Rahebi and Asadi 2009). Service discovery is a very vital area of research in MANET. A service is defined as any 
+Corresponding Author:    Noman Islam, Department of Computer Science, National University of Computer and Emerging Sciences, 
+         Karachi, Pakistan 
+         Emails:noman.islam @nu.edu.pk
+physical or non-physical item that can be invoked by a service consumer to attain its objective. Service discovery can be defined as the course of actions performed by a service provider to find any particular service based on the preferences specified by a service consumer. Service discovery in MANET is a very complex task because of the dynamic nature of such networks. A good service discovery algorithm for MANET should be proactive enough to take initiatives in advance to improve efficiency of service discovery process and reactive enough to respond to sudden network changes. In this paper, we have proposed an integrated approach to service discovery in MANET that works at network layer. A network layer approach to service discovery improves the robustness and resilience of the service discovery phase. It also provides an appropriate path to reach the service provider. In addition, our proposed approach also piggybacks possible future requests along with current response. Our proposed scheme improves the performance of service discovery phase in many ways. First, there is no need to discover the routing path to access the service. The routing path is computed along with the service discovery phase. Secondly, it also appends future candidate requests along with the response of current service discovery. This not only saves the service discovery steps of future requests, but also the steps required to discover the route to reach the service provider. In order to compute candidate future requests, the nodes in the network run an Association Rules Mining algorithm on the service discovery requests issued in the past. We assume that services that were invoked simultaneously in past are expected to be used together in future as well. The correlation among the past service discovery requests are used to piggyback future requests’ results with current response. The proposed approach has been implemented in JIST/SWANS(Barr et al. 2004)  simulated and found to give significant improvements in results. 
+Rest of the sections of this paper discusses the proposed approach in detail. In the next section, a review of the current literature on service discovery in MANET has been presented. Then the proposed approach and its components are discussed in detail along with discussions on the result. Finally, the paper concludes with future work.
+RELATED WORK
+There has been a significant amount of literature reported for service discovery in traditional as well as Mobile Ad hoc Networks. The simplest approach to service discovery is the directory-based approach in which every service provider registers its services to one or more directory servers. A service consumer can then query the directory servers to look for the service it wants and then select one of the available services based on its preferences. JINI (Sun 2003), DReggie (Chakraborty et al. 2001) and Mallah (Mallah and Quintero 2009) are some of the examples of directory-based approaches. JINI is proposed by Sun Micro Systems for distributed environment. It comprises of three basic protocols i.e. discovery, join and lookup protocol. The discovery protocol is used when a new device is plugged-in in to the network. The device locates the available directory servers around it. Using the join protocol, the device then registers its self to directory server. The lookup protocol is used when a service consumer wants a service. The consumer does this by specifying the Java interface for the service it wants to discover. The lookup protocol returns zero or more objects that matches the type of the interface. DReggie is an extension of JINI that adds semantics through the use of ontology language DAML. The protocol also adds reasoning capabilities through the use of a Prolog reasoning engine. (Mallah and Quintero 2009) proposes a directory based service discovery protocol that uses the concept of virtual backbones. These virtual backbones are selected based on a number of parameters like battery power, node speed and stability constraint. These virtual back bones then store the services available on the network. The consumers can then look for the services by querying these virtual back bones.
+Directory based approaches are not always suitable for MANET. The alternative approach for service discovery in MANET is directory less approach. Examples of directory less approaches are Allia(Ratsimor et al. 2002), GSD (Chakraborty et al. 2002), Konark (Helal et al. 2003), IBM DEAPSpace (Michael 2001) and Microsoft UPnP (Microsoft 2000). Allia is based on the formation of communities called Alliance. All the service discovery requests of a node are forwarded to its alliance nodes. These requests can further be broadcasted or multicast based on the policy of the node. GSD is based on the idea of establishment of group to minimize the overhead incurred in the discovery. Services are represented using the ontology language DAML. The semantic information associated with the services and the group information are used for intelligent forwarding of service discovery requests. The protocols Microsoft UPnP, Konark, and IBM DEAPSpace are based on broadcasting of the services information and caching of this information by peer nodes. Service Location Protocol(Guttman and Perkins 1999) is a hybrid approach for service discovery that can work in both directory based or directory less fashion. It represents the services in the form of a set of attributes. Any new device entering in to the network first looks for a directory server available in the network. If no directory server is found, the device starts working in P2P mode. 
+Besides the simplest approaches discussed above, there are a number of other directions in which research on service discovery has been pursued. (Lenders et al. 2005) has developed an interesting analogy between a MANET and an electrostatic field. Using this analogy, the authors utilized the concepts from physics to propose a service discovery scheme for MANET. (Hong et al. 2007) proposed a service discovery protocol based on ZeroConf protocol. The protocol claims to accelerate service discovery by broadcasting the service information only when the network topology is changed or when the protocol ZeroConf is initialized. (Talwar et al. 2007) proposed a scheme based on mobile nodes that intelligently extract services information along the network in periodic fashion. During the discovery phase, a service consumer sends a service discovery request to these mobile nodes. (Czerwinski et al. 1999) provides an architecture for secure service discovery based on XML. The advertisements and queries are described using XML with other factors like cost, performance, capabilities etc. The proposed architecture is claimed to be scalable, fault tolerant and secure. However, this approach is not suitable for MANET because it requires an appropriate infrastructure to work. (Lee and Helal 2003) introduces the concept of service discovery based on the context attributes. (Islam and Shaikh 2009) utilizes correlation among services requested in past to predict future service discovery requests and then piggybacking expected future requests with current service discovery requests. The authors applied an Association Rules Mining algorithm on a broadcast-base service discovery approach and shown improvement in service hit ratio. 
+There has been a significant research interest towards cross-layer design in Wireless and Ad hoc networks(Al-Hemyari et al. 2009) . (Arias-Torres and García-Macias 2004) proposed a network-layer discovery scheme in which they integrated service discovery with AODV routing protocol. The approach is based on extending the routing protocol such that service request packets are routed based on the service provider node instead of the destination node. (Islam and Shaikh 2008) extended this scheme further by adding a broadcasting module on top of (Arias-Torres and García-Macias 2004) scheme. The broadcasting module periodically broadcasts service and routing information to adjacent nodes. Nodes that receive the broadcast information update their service and routing tables accordingly. The main motivation behinds this extension was to improve the latency incurred during service discovery phase. In this paper we have extended the  idea of (Arias-Torres and García-Macias 2004) and (Islam and Shaikh 2008) further by showing how we can integrate service discovery with Dynamic Source Routing algorithm.. We have also proposed Association Rules Mining component that applies data mining on the service discovery requests of pasts and then predicts future requests. Simulations have shown that the service hit ratio improves when mining algorithm is used.
+PROPOSED SERVICE DISCOVERY APPROACH
+Figure 1 shows the block diagram of proposed service discovery approach. It comprises of a Service Discovery Component that is responsible for actual service discovery and an Association Rules Mining Component that analyzes the past service discovery requests to predict future requests. In the Service Discovery Component, we have extended the algorithm proposed in (Arias-Torres and García-Macias 2004) by adding a proactive broadcasting module on top of their work. It will be shown that by adding this component, the latency incurred in service discovery process has improved. The Service Discovery Component runs an integrated algorithm that couples routing with the service discovery phase.  The benefits of combining routing along with service discovery are multifold (Varshavsky et al. 2005). A network based service
+ 
+Fig 1: Proposed Integrated Approach to service discovery in Mobile Ad hoc Network
+discovery algorithm provides more resilience and robustness as it is aware of the network state, its topology and the events occurring over the network. It also provides improvement in latency incurred in discovery and accessing a service. Our proposed approach is based on service oriented routing i.e. a service discovery request is routed along the network using some routing algorithm. We define a service oriented routing algorithm as an algorithm that modifies the routing protocol such that a request is forwarded based on the service providing node instead of destination node. In this paper, we will discuss two service oriented routing algorithms. The first one is actually proposed by (Arias-Torres and García-Macias 2004) and it is based on Ad hoc On-Demand Distance Vector (AODV) Routing Algorithm. The second algorithm is proposed by us and it is based on Dynamic Source Routing (DSR) algorithm.
+The mining component shown in Figure 1 periodically runs Association Rules Mining algorithm on a circular log database where all the past service requests are stored. It improves the service discovery performance by facilitating the service discovery component to nail possible future requests with current request. The details of these components are discussed in the next section.
+
+Service Discovery Component (SDC):
+Figure 2 shows the pseudo-code describing the working of our service discovery component. The SDC component comprises of two sub-components running on every node. The first component is a proactive component that periodically broadcasts Update Service Table (UST) Packet along the network. The second component is an on-demand/reactive component that is activated when a node doesn’t find any information about a requested service in its local service table. Every node periodically broadcasts UST message that contains the services information along with the corresponding routing information. The format of UST packet is as follows: 
+<UST> = MessageId PacketType *<Service Advertisement>
+<Service Advertisement> = <Service Details> <Route Details>
+<Service Details> 	=  Provider ServiceName ServcieType URL Description *(<QoS Attribute>)
+<QoS Attributes> = AttributeName AttributeValue
+<Route Details> = SequenceNumber Destination HopCount NextNode
+The UST packet comprises of a message identifier, the type of packet and a number of service advertisements. Any node receiving UST updates its service table with the information contained in this UST. When a node has any query for service, it first checks its local service table. In most of the cases, the node’s service request is satisfied locally. However, if a node’s query is not satisfied locally, a SREQ is issued on the network using reactive service discovery component. The way SREQ is propagated on the network and its reply SREP is generated is dependent on the service oriented routing algorithm used underneath. In the next section, we will discuss two algorithms that can be used for discovering a service on-demand on the network.
+ 
+
+
+(a) Service Discovery Component
+
+
+
+
+
+
+
+
+
+
+
+
+
+(b) Proactive Component
+
+Fig 2: Pseudo code for Proposed Integrated Service Discovery Protocols for MANET
+
+i) An On-Demand Service Discovery Algorithm on AODV Routing Protocol:
+The AODV based algorithm we discussed here has been proposed by Torres(Arias-Torres and García-Macias 2004). Figure 3(a) shows the working of ADOV based service oriented routing algorithm. When a reactive component is requested for a particular service, a SREQ is issued on the network. The SREQ packet format is as follows:
+SREQ = MessageId PacketType Length ServiceName <QoS Attributes>
+
+Figure 4(a) explains how SREQ is propagated on the network and how its answer SREP is responded. The SREQ is broadcasted by the requesting node to its adjacent nodes. Any node receiving this SREQ first looks in its service table for the service that is asked in SREQ? If the service is available locally, the node generates SREP; otherwise the node propagates SREQ to its adjacent nodes until SREQ arrives to the node containing the desired service or the TTL value of the SREQ packet expires. Along with propagating SREQ, a node also maintains a reverse pointer towards the node that actually forwarded SREQ to it. When a node generates SREP, it uses the reverse pointers to track the path through which corresponding SREQ arrives to it and the SREP follows the same path until SREP reaches to the source for which it is destined. The SREP packet format is as follows:
+SREP = MessageId PacketType <ServiceDetails>
+
+
+
+
+
+
+
+
+
+
+
+	
+Fig 3: Proposed Service Oriented Routing Scheme for MANET
+ii) An On-Demand Service Discovery Algorithm on DSR Routing Protocol:
+Figure 3(b) explains the DSR based service oriented routing algorithm. Figure 4(b) show an example of how SREQ is propagated on the network and how its answer SREP is responded when the reactive component of our algorithm is used for discovering a service on the network. The SREQ is broadcasted by the requesting node to its adjacent nodes. Any node receiving this SREQ first looks in its service table that if it has the service that is asked in SREQ? If any information about requested service is present, the node generates SREP; otherwise the node propagates SREQ to its adjacent nodes along with appending its own IP address to the list of IP addresses contained in the SREQ Packet. This process continues until SREQ reaches to any node that contains the desired service or the TTL value of the SREQ packet expires. The format of SREQ packet format is as follows:
+SREQ = MessageId PacketType Length ServiceName <QoS Attributes> <IPAddressList>
+<IPAddressList> = + (IPAddress)
+The IPAddressList maintains the intermediate nodes traversed by the SREQ packet. When a node that has information about the service generates SREP, the path information contained in SREQ (i.e. IPAddressList) is copied to SREP and is then used for routing packet back to source. The intermediate nodes that receive SREP use the information contained in IPAddressList to propagate the SREP ahead until the packet reaches the desired destination. In addition, the path information is further used for invoking the service by the service consumer. The SREP packet format is as follows:
+SREP = MessageId PacketType <ServiceDetails> <IPAddressList>
+ 
+
+
+
+
+
+
+(a) Node ‘A’ requesting a service available at node ‘F’
+
+
+
+
+
+(b) Node ‘A’ requesting a service available at node ‘F’
+Fig 4: Reactive Component of proposed Service Discovery Component
+iii) Implementation Details and Discussions on Results:
+The proposed approach has been implemented in JIST/SWANS network simulation tool(Barr, Haas et al. 2004). The field of simulation was set to 500 ? 500 with random placement of nodes. To evaluate the scheme, we have selected latency parameter, which is defined as the time interval between the issuance and the receipt of the reply of the service. Figure 5 shows the results of different experiments conducted to evaluate the proposed scheme. The different parameters and duration of the experiment is shown on the bottom of each experiment along with their averages. From the graph, one can easy conclude that our proposed scheme performs better when a broadcasting capability is added to service oriented routing algorithms. The reason for this improvement is that most of the service information was cached by adjacent nodes when service advertisements were done. This cached information reduces network traffic because more service requests were satisfied locally. There are some instances of service requests that give rise to more service latency in broadcast algorithm as compared to no-broadcasting algorithm. The possible reason for this behavior can be that a service request was issued at the same time when some other nodes were broadcasting their advertisements on the network. As a result, a service discovery request had less bandwidth available to propagate its service on the network.
+
+ 
+(a) AODV based On-Demand Service Discovery
+
+Avg. Latency with broadcast:   17.292 s Avg. Latency without broadcast:  23.436 s
+Simulation Time:                      2000s 	   No. of Nodes:   	                 50
+No of requests: 	         200  	   No. of Services: 	                 25
+	
+ 
+
+
+(b) DSR based On-Demand Service Discovery
+
+Avg. Latency with broadcast:  21.354 s  Avg. Latency without broadcast: 25.764 s
+Simulation Time: 	         2000s 	    No. of Nodes: 	                 100
+No of requests: 	         200  	    No. of Services: 	                 25
+
+
+
+ 
+(c) AODV based On-Demand Service Discovery
+
+Avg. Latency with broadcast: 	29.584 s	Avg. Latency without broadcast: 	36.242 s
+Simulation Time: 		2000s 	No. of Nodes: 		200	
+                     No of requests: 		200  	No. of Services: 		25
+	
+
+
+
+
+
+Legend:
+
+ Fig 5: Comparison of proposed Network Layer scheme: Broadcasting Vs No Broadcasting
+
+Association Rules Mining Component (ARM):
+The Association Rules Mining Component (ARM) improves the service discovery performance by exploiting correlations among service discovery requests to forecast future requests. It is based on the assumption that the service discovery requests that were issued together in past are correlated and they are anticipated to be used at the same time in future as well. For example, if you are planning to do shopping, you will want to query over the internet about the shopping places around you, the shopping items available, their prices and distance of the shopping places from your current location. These queries are most likely to be issued together in future as well by the same or some other consumer. Hence, if we can piggy back potential future service requests with current response, this can save the time that could incur in future service 
+ 
+
+Fig 6: Proposed Network Layer Association Rules Mining Approach to Service Discovery in Mobile Ad hoc Network
+
+discovery requests issued. Figure 6 shows our proposed service discovery algorithm with ARM component in detail. In order to discover correlation, the ARM component runs FP-Growth Mining algorithm(Han et al. 2004) on the session records stored in a circular list called log database. A session is defined as the time interval in which a series of service discovery requests are issued before an idle period. The service discovery requests are bursty in nature and there is an idle phase after every session. A session record is a collection of services that are issued in one session. A log data maintains the session records in order to allow the mining component to find correlation patterns between services. The results of the ARM component are stored in an array list called mining results. These results are then used by service discovery module to piggy back future service discovery requests along with service discovery request it is responding. 
+Our proposed data mining approach is based on our earlier work presented in (Islam and Shaikh 2009). In (Islam and Shaikh 2009), we applied the scheme to a simple broadcast based service discovery algorithm. In this paper, we have applied the same scheme to our proposed service oriented routing algorithms. To apply the Association Rules mining algorithm, we need to modify our SREQ and SREP. The modified SREQ packet is as follows:
+SREQ ' = SessionId <SREQ>
+
+A SessionId is added in the service request packet such that packets of same session can be identified. Similarly, the SREP packet is modified as follows:
+SREP ' = SessionId <SREP> RelatedServiceList
+
+i) Generating a session using Correlated Data Set Generator:
+In order to simulate a session in which service discovery request are correlated, we developed a Correlated Data Generator (CDG) module. The CDG utilizes a correlation matrix M to generate service requests. First of all a matrix of random numbers R of n ? n is generated, where n is the number of services on which simulation is performed. Using this matrix, M is built in the following way:
+ 
+If the services in the network are arranged in some order and assigned an index in ascending order, the correlation matrix M(i,j) tells whether service i is related to service j. In order to generate a session, we first generate candidate services that can be part of possible session. A service s is randomly selected and then Candidate Service Requests C are generated as follows:
+ 
+In other words, the Candidate Service Requests set C includes the randomly selected service s and all those services that are related to s. The service session S is then defined as:
+ 
+where, 0 = pi <1, "i?C is a random number and  determines the probability that a service discovery request is issued on the network. 
+ii) Implementation Details and Discussions on Results:
+The proposed approach has been implemented in JIST/SWANS simulator(Barr, Haas et al. 2004). Unless other wise stated, we have kept all the simulation parameters to default of JIST/SWANS. The simulation has been done in a field of 500 ? 500. The value of  is set to 0.8. The size of service table is chosen as 5 and the cache replacement strategy used for service table is First In First Out i.e. FIFO. For association rules mining, we used FP-Growth mining algorithm(Han, Pei et al. 2004) as we stated earlier. Though there are other algorithms like Apriori(Wikipedia 2010), but we choose FP-Growth because of its performance. Figure 7 shows the results of our proposed approach with different experiments. To evaluate the proposed scheme, we measured hit ratio i.e. the number of service discovery requests locally satisfied in comparison with the requests floated by a particular node. In the first experiment, an Ad hoc network of 20 nodes with 10 services is simulated for 9000 seconds for AODV based algorithm. We compared the proposed approach with the result when Association Rules Mining is not done. The results show that the proposed approach performs very well. The reason for this improvement is that the nodes are predicting future requests and attaching the responses of these requests with current response. Some of these piggy-backed are then indeed used by requesting nodes in future. This gives rise to improvement in hit ratio. In some of the cases, the result however degrades. This might be due to the fact that the future prediction of service requests is wrong. In the second experiment, the number of nodes was increased to 50 and simulation was done for 5000s for AODV-based algorithm. The third experiment was conducted for 50 nodes protocol for 5000 seconds for DSR-based algorithm. The results show that the proposed approach performs reasonably well in these scenarios as well.
+CONCLUSION
+We have proposed an integrated approach to service discovery in MANET that provides an appropriate route to reach the service provider along with the information about service provider. We discussed two service oriented routing 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fig 7: Results of proposed approach with AODV as routing protocol
+
+Algorithms based on AODV and DSR; that can be used as part of reactive component of our proposed service discovery scheme. Using Association Rules Mining, the proposed approach also piggybacks information about possible future service requests. Simulation of the proposed scheme has shown improvement in latency and hit ratio. The proposed approach also provokes several new research areas in which further extension of this work can be done. For example, the broadcasting module of SDC periodically broadcasts UST packet. The broadcasting module can be modified to make it a function of several other factors like network congestion and service popularity factor. If f represents the function that determines whether to broadcast a service on to the network or not, c represents the network congestion and p represents the popularity factor of a service, then we can define broadcasting function f as:
+ 
+By making the broadcasting a function of these factors, we can intelligently broadcasts services on the network considering the current situation of the network. Research should also be conducted on the development of new Association Rules Mining algorithms for low-memory devices since, the FP-Growth algorithm is very expensive in terms of memory requirements and MANET devices are computationally weak. Another important area of research is the representation of services using representation languages like DAML or OWL to incorporate semantic information. 
+Acknowledgment
+We would like to acknowledge Center for Research in Ubiquitous Computing, National University of Computer and Emerging Sciences, Karachi and Higher Education Commission, Pakistan for their support in the completion of this research work.
